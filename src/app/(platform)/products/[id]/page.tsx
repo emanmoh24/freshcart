@@ -1,7 +1,7 @@
 import ProductDetailsScreen from '@/features/products/screens/ProductDetailsScreen'
 import React from 'react'
 
-type Props = {params:Promise<{id:String}>}
+type Props = {params:Promise<{id:string}>}
 
 export default async function ProductDetails({params}: Props) {
 

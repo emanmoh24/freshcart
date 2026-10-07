@@ -113,7 +113,7 @@ export default function ProductInfo({ product }: { product: ProductDetails }) {
                 <ImageGallery
                   showNav={false}
                   showPlayButton={false}
-                  items={images?.map((image) => {
+                  items={images ?? [].map((image) => {
                     return {
                       original: image,
                       thumbnail: image,

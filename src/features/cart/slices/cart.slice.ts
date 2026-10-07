@@ -32,7 +32,7 @@ const cartSlice = createSlice({
         state.cartId = action.payload.cartId
         state.data = {
           products: action.payload.data.products, 
-          totalCartPrice: action.payload.data.totalCartPrice
+          totalCartPrice: action.payload.data?.totalCartPrice ?? 0
         }
         state.message = action.payload.message
         state.numOfCartItems = action.payload.numOfCartItems
