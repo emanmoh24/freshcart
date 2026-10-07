@@ -66,7 +66,9 @@ export default function ProductCard({ product }: { product: Product }) {
     if (response.status === "success") {
       toast.success(response.message);
       const fullWishlist = await getUserWishlist();
-      dispatch(setWishlistInfo(fullWishlist));
+      if (fullWishlist.status === "success") {
+        dispatch(setWishlistInfo(fullWishlist));
+      }
     }
   }
 
