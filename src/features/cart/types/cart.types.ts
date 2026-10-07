@@ -47,7 +47,7 @@ export interface CartData {
   _id?: string;
   cartOwner?: string;
   products: CartEntity[];
-  totalCartPrice?: number;
+  totalCartPrice: number;
   createdAt?: string;
   updatedAt?: string;
   __v?: number;
