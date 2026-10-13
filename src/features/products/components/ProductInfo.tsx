@@ -82,11 +82,11 @@ export default function ProductInfo({ product }: { product: ProductDetails }) {
   }
 
   return (
-    <section className="bg-slate-50/70 py-6 sm:py-8 lg:py-10">
+    <section className="bg-slate-50/70 py-4 sm:py-8 lg:py-10">
       <div className="container">
         <nav
           aria-label="Breadcrumb"
-          className="mb-6 flex flex-wrap items-center gap-2 text-sm text-slate-500"
+          className="mb-4 flex min-w-0 flex-wrap items-center gap-2 text-xs text-slate-500 sm:mb-6 sm:text-sm"
         >
           <Link
             href="/"
@@ -98,23 +98,24 @@ export default function ProductInfo({ product }: { product: ProductDetails }) {
           <IconChevronRight size={15} className="text-slate-300" />
           <Link
             href={`/categories/${category._id}`}
-            className="transition-colors hover:text-emerald-700"
+            className="min-w-0 break-words transition-colors hover:text-emerald-700"
           >
             {category.name}
           </Link>
           <IconChevronRight size={15} className="text-slate-300" />
-          <span className="max-w-full truncate font-medium text-slate-800">
+          <span className="min-w-0 max-w-full break-words font-medium text-slate-800">
             {title}
           </span>
         </nav>
 
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8">
+        <div className="grid min-w-0 gap-4 sm:gap-6 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-8">
           <div className="min-w-0">
             <div className="overflow-hidden rounded-lg border border-emerald-100 bg-white shadow-sm">
-              <div className=" overflow-hidden bg-linear-to-br from-emerald-50 via-white to-amber-50 p-6 sm:p-10">
+              <div className="overflow-hidden bg-linear-to-br from-emerald-50 via-white to-amber-50 p-3 sm:p-6 lg:p-8">
                 <ImageGallery
                   showNav={false}
                   showPlayButton={false}
+                  additionalClass="product-image-gallery"
                   items={(images ?? []).map((image) => {
                     return {
                       original: image,
@@ -126,20 +127,20 @@ export default function ProductInfo({ product }: { product: ProductDetails }) {
             </div>
           </div>
 
-          <div className="min-w-0 rounded-lg border border-emerald-100 bg-white p-5 shadow-sm sm:p-7 lg:p-8">
+          <div className="min-w-0 rounded-lg border border-emerald-100 bg-white p-4 shadow-sm sm:p-7 lg:p-8">
             <div className="mb-4 flex flex-wrap items-center gap-2">
               <Link
                 href={`/categories/${category._id}`}
-                className="rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 transition-colors hover:bg-emerald-100"
+                className="max-w-full truncate rounded-full bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 transition-colors hover:bg-emerald-100"
               >
                 {category.name}
               </Link>
-              <span className="rounded-full bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800">
+              <span className="max-w-full truncate rounded-full bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800">
                 {brand.name}
               </span>
             </div>
 
-            <h1 className="text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
+            <h1 className="break-words text-2xl font-bold leading-tight text-slate-900 sm:text-3xl">
               {title}
             </h1>
 
@@ -161,7 +162,7 @@ export default function ProductInfo({ product }: { product: ProductDetails }) {
             </div>
 
             <div className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1 border-b border-slate-100 pb-6">
-              <span className="text-3xl font-bold text-slate-900">
+              <span className="break-words text-2xl font-bold text-slate-900 sm:text-3xl">
                 EGP {price || priceAfterDiscount}
               </span>
               {priceAfterDiscount && (
@@ -240,11 +241,11 @@ export default function ProductInfo({ product }: { product: ProductDetails }) {
             </button>
 
             <div className="mt-7 grid gap-4 border-t border-slate-100 pt-6 sm:grid-cols-3">
-              <div className="flex items-center gap-3">
+              <div className="flex min-w-0 items-center gap-3">
                 <span className="grid size-10 shrink-0 place-items-center rounded-full bg-emerald-50 text-emerald-700">
                   <IconTruckDelivery size={20} />
                 </span>
-                <span>
+                <span className="min-w-0">
                   <span className="block text-xs font-semibold text-slate-800">
                     Quick delivery
                   </span>
@@ -253,11 +254,11 @@ export default function ProductInfo({ product }: { product: ProductDetails }) {
                   </span>
                 </span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex min-w-0 items-center gap-3">
                 <span className="grid size-10 shrink-0 place-items-center rounded-full bg-amber-50 text-amber-700">
                   <IconRefresh size={19} />
                 </span>
-                <span>
+                <span className="min-w-0">
                   <span className="block text-xs font-semibold text-slate-800">
                     Easy returns
                   </span>
@@ -266,11 +267,11 @@ export default function ProductInfo({ product }: { product: ProductDetails }) {
                   </span>
                 </span>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex min-w-0 items-center gap-3">
                 <span className="grid size-10 shrink-0 place-items-center rounded-full bg-emerald-50 text-emerald-700">
                   <IconShieldCheck size={19} />
                 </span>
-                <span>
+                <span className="min-w-0">
                   <span className="block text-xs font-semibold text-slate-800">
                     Secure checkout
                   </span>

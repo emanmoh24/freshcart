@@ -88,7 +88,7 @@ export default function ProductCard({ product }: { product: Product }) {
             -{Math.round(((price - priceAfterDiscount) / price) * 100)}%
           </span>
         )}
-        <div className="absolute right-14 top-40 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
+        <div className="absolute right-3 top-3 flex items-center justify-center gap-2 sm:right-14 sm:top-40 sm:opacity-0 sm:group-hover:opacity-100">
           <button
             type="button"
             onClick={() => {
@@ -141,7 +141,7 @@ export default function ProductCard({ product }: { product: Product }) {
             {ratingsAverage.toFixed(1)} ({ratingsQuantity})
           </span>
         </div>
-        <div className="flex items-center justify-between gap-2 pt-1">
+        <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
           <div className="flex items-center justify-between gap-2">
             <p className="text-sm font-semibold text-slate-900">
               EGP {priceAfterDiscount || price}

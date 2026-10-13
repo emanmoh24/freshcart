@@ -24,6 +24,7 @@ import { authActions, authReducer } from "@/features/auth/slices/auth.slice";
 import { AppState } from "@/store/store";
 import { useRouter } from "next/navigation";
 import { deleteToken } from "@/features/auth/server/auth.actions";
+import { useState } from "react";
 
 const categories = [
   {
@@ -56,6 +57,7 @@ const menuLinks = [
 ];
 
 export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { isAuthenticated, userInfo } = useSelector(
     (state: AppState) => state.authReducer,
   );
@@ -93,7 +95,10 @@ export default function Navbar() {
 
           <button
             type="button"
-            aria-label="Open menu"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
+            onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
             className="rounded-lg bg-emerald-600 p-2 text-white shadow-sm shadow-emerald-200 lg:hidden"
           >
             <IconMenu2 size={24} />
@@ -128,7 +133,7 @@ export default function Navbar() {
               <>
                 <li>
                   <Link
-                    href="/account"
+                    href="/profile"
                     className="flex flex-col items-center gap-1 text-slate-700 transition hover:text-sky-600"
                   >
                     <IconUser className="text-sky-500" />
@@ -175,6 +180,103 @@ export default function Navbar() {
         </nav>
       </div>
 
+      {isMobileMenuOpen && (
+        <nav
+          id="mobile-navigation"
+          aria-label="Mobile navigation"
+          className="border-t border-emerald-100 bg-white px-4 py-4 lg:hidden"
+        >
+          <ul className="grid grid-cols-2 gap-2">
+            {menuLinks.map(({ href, label }) => (
+              <li key={label}>
+                <Link
+                  href={href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+            <li>
+              <Link
+                href="/categories"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+              >
+                All Categories
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/wishlist"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+              >
+                Wishlist
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/cart"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+              >
+                Cart ({numOfCartItems})
+              </Link>
+            </li>
+            {isAuthenticated ? (
+              <>
+                <li>
+                  <Link
+                    href="/profile"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                  >
+                    Account
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    onClick={async () => {
+                      setIsMobileMenuOpen(false);
+                      dispatch(logout());
+                      router.push("/login");
+                      await deleteToken();
+                    }}
+                    className="w-full rounded-md px-3 py-2.5 text-left text-sm font-medium text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link
+                    href="/login"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/signup"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block rounded-md px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                  >
+                    Signup
+                  </Link>
+                </li>
+              </>
+            )}
+          </ul>
+        </nav>
+      )}
+
       <div className="hidden bg-gradient-to-r from-emerald-50 via-white to-amber-50 lg:block">
         <div className="container mx-auto flex items-center gap-8 px-4 py-3">
           <div className="group relative">
@@ -188,8 +290,8 @@ export default function Navbar() {
             </button>
 
             <ul className="invisible absolute left-0 top-full z-10 mt-2 w-64 translate-y-2 rounded-lg bg-white py-2 opacity-0 shadow-xl transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
-              {categories.map(({label, icon: CategoryIcon }) => (
-                <li>
+              {categories.map(({ label, icon: CategoryIcon }) => (
+                <li key={label}>
                   <span
                     className="flex cursor-pointer items-center gap-3 px-4 py-3 transition hover:bg-emerald-50 hover:text-emerald-700"
                   >

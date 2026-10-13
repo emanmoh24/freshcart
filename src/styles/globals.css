@@ -46,3 +46,14 @@ html {
   background: #fbbf24;
   box-shadow: 0 0 0 3px rgb(6 78 59 / 45%);
 }
+
+.product-image-gallery .image-gallery-slide .image-gallery-image {
+  max-height: min(65svh, 36rem);
+  object-fit: contain;
+}
+
+@media (max-width: 639px) {
+  .product-image-gallery .image-gallery-slide .image-gallery-image {
+    max-height: min(55svh, 24rem);
+  }
+}
