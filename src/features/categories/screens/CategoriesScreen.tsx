@@ -40,7 +40,7 @@ export default async function CategoriesScreen() {
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-7xl my-10">
+      <section className="mx-auto my-8 w-full max-w-7xl px-4 sm:my-10 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col gap-2 sm:mb-10">
           <p className="text-sm font-semibold uppercase tracking-[0.16em] text-emerald-700">
             FreshCart collection

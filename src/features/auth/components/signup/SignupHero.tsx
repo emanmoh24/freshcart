@@ -29,7 +29,7 @@ const benefits = [
 
 export default function SignupHero() {
   return (
-    <div className="relative overflow-hidden rounded-3xl border border-emerald-100 bg-linear-to-br from-emerald-50 via-white to-amber-50 p-7 sm:p-10">
+    <div className="relative hidden overflow-hidden rounded-3xl border border-emerald-100 bg-linear-to-br from-emerald-50 via-white to-amber-50 p-7 sm:p-10 xl:block">
       <div className="pointer-events-none absolute -right-20 -top-20 size-56 rounded-full bg-amber-200/40" />
       <div className="pointer-events-none absolute -bottom-24 -left-20 size-64 rounded-full bg-sky-200/40" />
 

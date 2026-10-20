@@ -75,7 +75,7 @@ export default function LoginForm() {
           <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
             <IconLock size={29} stroke={1.8} />
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Welcome Back
           </h1>
           <p className="mt-2 text-sm text-slate-500">

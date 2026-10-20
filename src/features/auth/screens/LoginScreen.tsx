@@ -4,7 +4,7 @@ import LoginHero from "../components/login/LoginHero";
 
 export default function LoginScreen() {
   return (
-    <div className="grid grid-cols-2 p-15 gap-7">
+    <div className="grid grid-cols-1 gap-5 p-4 sm:gap-7 sm:p-8 xl:grid-cols-2 xl:p-15">
       <LoginHero />
       <LoginForm />
     </div>
